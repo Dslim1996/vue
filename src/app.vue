@@ -8,20 +8,23 @@
 
     <div 
     class="parent"
-    @wheel.passive="handler">
+    @wheel.passive="handlerC">
         <div 
         class="child"></div>
     </div>
+
+    <input 
+    type="text" 
+    @keydown.ctrl.shift.a="handler"/>
 </template>
 
 <script>
 
 export default {
     methods: {
-        handler(event){
-            for(let i = 0; i < 10000; i++){
-                console.log(event)
-            }
+        handler(){
+            console.log('Enter!!')
+            
         },
         handlerA(event){
             console.log(event.target)
@@ -30,6 +33,11 @@ export default {
         },
         handlerB(){
             console.log('B')
+        },
+        handlerC(event){
+            for(let i = 0; i < 10000; i++){
+                console.log(event)
+            }
         }
     }
 }
