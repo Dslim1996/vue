@@ -1,8 +1,13 @@
 <template>
-    <MyBtn 
-    @rim="log" 
-    @change-msg="logMsg">
-        Banana
+    <MyBtn>
+        
+        <template #text>
+            <span>Banana</span>
+        </template>
+        <template #icon>
+            <span>{B}</span>
+        </template>
+        
     </MyBtn>
 </template>
 
@@ -12,15 +17,6 @@ import MyBtn from "~/components/MyBtn";
 export default {
     components: {
         MyBtn
-    },
-    methods: {
-        log(e) {
-            console.log('Click!!')
-            console.log(e)
-        },
-        logMsg(msg){
-            console.log(msg)
-        }
     }
 }
 </script>
