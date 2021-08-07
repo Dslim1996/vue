@@ -1,60 +1,31 @@
 <template>
-    <a 
-    href="https://naver.com"
-    target="_blank"
-    @click.prevent.once="handler">
-    NAVER
-    </a>
-
-    <div 
-    class="parent"
-    @wheel.passive="handlerC">
-        <div 
-        class="child"></div>
-    </div>
-
+    <h1>한글 입력시 한박자 늦음{{ msg }}</h1>
     <input 
     type="text" 
-    @keydown.ctrl.shift.a="handler"/>
+    v-model="msg" />
+    
+    <h1>한글 입력시 즉시 입력{{ msg }}</h1>
+    <input 
+    type="text" 
+    :value="msg"
+    @input="msg = $event.target.value" />
+
+    <h1>{{ checked }} </h1>
+
+    <input 
+    type="checkbox" 
+    v-model="checked">
 </template>
 
 <script>
 
 export default {
-    methods: {
-        handler(){
-            console.log('Enter!!')
-            
-        },
-        handlerA(event){
-            console.log(event.target)
-            console.log(event.currentTarget)
-            console.log('A')
-        },
-        handlerB(){
-            console.log('B')
-        },
-        handlerC(event){
-            for(let i = 0; i < 10000; i++){
-                console.log(event)
-            }
+    data() {
+        return {
+            msg: 'hello world',
+            checked: false
         }
     }
 }
 </script>
 
-<style lang="scss" scoped>
-    .parent{
-        width: 200px;
-        height: 100px;
-        background-color: royalblue;
-        margin: 10px;
-        padding: 10px;
-        overflow: auto;
-        .child{
-            width: 100px;
-            height: 2000px;
-            background-color: orange;
-        }
-    }
-</style>
