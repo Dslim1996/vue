@@ -1,31 +1,16 @@
-<template>
-    <div 
-    :class="{ large }"
-    :style="{ backgroundColor: col }" 
-    class="btn">
+<template>  <!--최상위 요소(루트) : 2개 이상 있는경우 class rim 이 어디 들어갈지 모름 -->
+    <div class="btn"> <!--class = rim 상속 -->
         <slot></slot> <!--{{ text }} -->
     </div>
+    <!--<h1 :class="$attrs.class" :style="$attrs.style"></h1>-->
+    <h1 v-bind="$attrs"></h1>
 </template>
 
 <script>
 export default {
-    props: {
-        color: {
-            type: String,
-            default: 'gray'
-        },
-        col: {
-            type: String,
-            default: 'gray'
-        },
-        large: {
-            type: Boolean,
-            default: false
-        },
-        text: {
-            type: String,
-            default: ''
-        }
+    inheritAttrs: false,
+    created() {
+        console.log(this.$attrs)
     }
 }
 </script>
@@ -40,10 +25,5 @@ export default {
         background-color: gray;
         color:white;
         cursor: pointer;
-        
-        &.large {
-            font-size: 20px;
-            padding: 10px 20px;
-        }
     }
 </style>
