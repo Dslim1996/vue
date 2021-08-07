@@ -1,20 +1,22 @@
 <template>
-    <h1>한글 입력시 한박자 늦음{{ msg }}</h1>
+    <h1>{{ msg }}</h1>
+
     <input 
     type="text" 
-    v-model="msg" />
+    v-model.trim="msg"/>
     
-    <h1>한글 입력시 즉시 입력{{ msg }}</h1>
     <input 
     type="text" 
-    :value="msg"
-    @input="msg = $event.target.value" />
-
-    <h1>{{ checked }} </h1>
-
+    :value="msg" 
+    @change="msg = $event.target.value"/>
+    
     <input 
-    type="checkbox" 
-    v-model="checked">
+    type="text" 
+    v-model.lazy="msg"/>
+    
+    <input 
+    type="text" 
+    v-model.number="msg"/>
 </template>
 
 <script>
@@ -22,8 +24,13 @@
 export default {
     data() {
         return {
-            msg: 'hello world',
-            checked: false
+            msg: 'hello world'
+        }
+    },
+    watch: {
+        msg() {
+            //trim() 앞뒤 공백 제거
+            console.log(this.msg)
         }
     }
 }
