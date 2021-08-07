@@ -1,26 +1,46 @@
 <template>
-    <div @click="increase">
-        {{ count }}
-    </div>
+    <h1 @click="increase">
+        {{ count }} / {{ doublecount }}
+    </h1>
+    <h1 @click="changeMessage">
+        {{ message }} / {{ reversedMessage }}
+    </h1>
 </template>
 
 <script>
-import { ref } from 'vue'
-
 export default {
-    setup() {
-        //let count = 0 //반응성X
-        let count = ref(0) //반응성을 가진 객체 데이터
-
-        function increase() {
-            count.value += 1
-        }
-
+    data() {
         return {
-            count,
-            increase
+            count: 0,
+            message: 'Hello World!'
+        }
+    },
+    computed: {
+        doubleCount() {
+            return this.count * 2
+        },
+        reversedMessage() {
+            return this.message.split('').reverse().join('')
+        }
+    },
+    watch: {
+        message(msg) {
+            console.lot(msg)
+        }
+    },
+    created() {
+        console.log(this.message)
+    },
+    mounted() {
+        console.lot(this.count)
+    },
+    methods: {
+        increase() {
+            this.count += 1
+        },
+        changeMessage() {
+            this.message = 'Good?'
         }
     }
 }
 </script>
-
