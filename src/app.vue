@@ -1,46 +1,23 @@
 <template>
-    <h1 @click="increase">
-        {{ count }} / {{ doublecount }}
-    </h1>
-    <h1 @click="changeMessage">
-        {{ message }} / {{ reversedMessage }}
-    </h1>
+    <MyBtn
+    class="rim"
+    style="color: red;"
+    @hello="log">
+    Apple
+    </MyBtn>
 </template>
 
 <script>
+import MyBtn from '~/components/MyBtn'
+
 export default {
-    data() {
-        return {
-            count: 0,
-            message: 'Hello World!'
-        }
-    },
-    computed: {
-        doubleCount() {
-            return this.count * 2
-        },
-        reversedMessage() {
-            return this.message.split('').reverse().join('')
-        }
-    },
-    watch: {
-        message(msg) {
-            console.lot(msg)
-        }
-    },
-    created() {
-        console.log(this.message)
-    },
-    mounted() {
-        console.lot(this.count)
-    },
-    methods: {
-        increase() {
-            this.count += 1
-        },
-        changeMessage() {
-            this.message = 'Good?'
-        }
-    }
+   components: {
+       MyBtn
+   },
+   methods: {
+       log() {
+           console.log('Hello world')
+       }
+   }
 }
 </script>
