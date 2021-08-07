@@ -1,36 +1,24 @@
 <template>
-    <h1>{{ msg }}</h1>
+    <MyBtn>Banana</MyBtn>
+    <MyBtn color="#000">Apple</MyBtn>
+    <MyBtn :col="color">
+        <span style="color: red">bababa</span>
+    </MyBtn>
+    <MyBtn large col="royalblue" text="Banana" />
 
-    <input 
-    type="text" 
-    v-model.trim="msg"/>
-    
-    <input 
-    type="text" 
-    :value="msg" 
-    @change="msg = $event.target.value"/>
-    
-    <input 
-    type="text" 
-    v-model.lazy="msg"/>
-    
-    <input 
-    type="text" 
-    v-model.number="msg"/>
+    <button>banana</button>
 </template>
 
 <script>
+import MyBtn from "~/components/MyBtn";   
 
 export default {
+    components: {
+        MyBtn
+    },
     data() {
         return {
-            msg: 'hello world'
-        }
-    },
-    watch: {
-        msg() {
-            //trim() 앞뒤 공백 제거
-            console.log(this.msg)
+            color: 'black'
         }
     }
 }
