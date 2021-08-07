@@ -1,16 +1,30 @@
-<template>  <!--최상위 요소(루트) : 2개 이상 있는경우 class rim 이 어디 들어갈지 모름 -->
-    <div class="btn"> <!--class = rim 상속 -->
-        <slot></slot> <!--{{ text }} -->
+<template> 
+    <div class="btn"> 
+        <slot></slot> 
     </div>
-    <!--<h1 :class="$attrs.class" :style="$attrs.style"></h1>-->
-    <h1 v-bind="$attrs"></h1>
+    <h1 @dblclick="$emit('rim', $event)">ABC</h1>
+
+    <input 
+    type="text" 
+    v-model="msg" />
+
 </template>
 
 <script>
 export default {
-    inheritAttrs: false,
-    created() {
-        console.log(this.$attrs)
+    emits: [
+        'rim',
+        'changeMsg'
+    ],
+    data() {
+        return {
+            msg: ''
+        }
+    },
+    watch: {
+        msg(){
+            this.$emit('changeMsg', this.msg)
+        }
     }
 }
 </script>
