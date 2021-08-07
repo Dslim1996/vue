@@ -1,46 +1,31 @@
 <template>
-   <h1 
-   :class="{ active: isActive}"
-   @click="activate">
-       Hello?!({{ isActive }})
-   </h1>
+    <button @click="handler">
+       Click me!
+    </button>
+    <template v-if="isShow">
+        <h1>Title</h1>
+        <p>Pargraph1</p>
+        <p>Pargraph2</p>
+    </template>
 
-   <h1 
-   :style="[fontStyle, backgroundStyle]"
-   @click="changeStyle">
+    <h1 v-show="isShow">
         Hello?!
-   </h1>
+    </h1>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            isActive: false,
-            fontStyle: {
-                color: 'orange',
-                fontSize: '30px'
-            },
-            backgroundStyle: {
-                backgroundColor: 'black'
-            }
-        }   
+            isShow: false,
+            count: 0
+        }
     },
     methods: {
-        activate() {
-            this.isActive = true
-        },
-        changeStyle() {
-            this.fontStyle.color = 'red'
-            this.fontStyle.fontSize = '50px'
+        handler() {
+            this.isShow = !this.isShow
+            this.count += 1
         }
     }
-}
+}   
 </script>
-
-<style scoped>
-    .active {
-        color: red;
-        font-weight: bold;
-    }
-</style>
