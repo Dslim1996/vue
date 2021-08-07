@@ -1,22 +1,28 @@
 <template>
-    <MyBtn>
-        
-        <template #text>
-            <span>Banana</span>
-        </template>
-        <template #icon>
-            <span>{B}</span>
-        </template>
-        
-    </MyBtn>
+    <button @click="message='Good?'">
+        click
+    </button>
+    <h1>App: {{ message }}</h1>
+    <Parent />
 </template>
 
 <script>
-import MyBtn from "~/components/MyBtn";   
+import Parent from "~/components/Parent";   
+import { computed } from 'vue'
 
 export default {
     components: {
-        MyBtn
+        Parent
+    },
+    data() {
+        return {
+            message: 'hello world'
+        }
+    },
+    provide() {
+        return {
+            msg: computed(() => this.message)
+        }
     }
 }
 </script>
