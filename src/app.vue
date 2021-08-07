@@ -1,53 +1,52 @@
 <template>
-    <h1 @click="increase">
-        {{ count }}
+    <h1 
+    v-once
+    @click="add">
+        {{ msg1 }}
     </h1>
-    <div v-if="count > 4">
-        4보다 큼니다!
-    </div>
-    <ul>
-        <Fruit 
-            v-for="fruit in fruits"
-            :key="fruit"
-            :name="fruit">
-            {{ fruit }}
-        </Fruit>
-        <li 
-            v-for="fruit in fruits"
-            :key="fruit">
-            App.vue {{ fruit }}
-        </li>
-    </ul>
+
+    <h1 
+    @click="add">
+        {{ msg }}
+    </h1>
+
+    <h1 v-html="msg1"></h1>
+
+    <h1 v-bind:class="msg2">
+        {{ msg2 }}
+    </h1>
+    
+    <h1 
+        :[attr]="'active'"
+        @[event]="add">
+        {{ msg2 }}
+    </h1>
+
 </template>
 
 <script>
-import Fruit from '~/components/Fruit'
+
 export default {
-    components: {
-        Fruit
-    },
     data() {
-        return {
-            count: 0,
-            fruits: ['Apple','Banan','Cherry']
-        }   
+        return{
+            msg: 'hello',
+            msg1: '<div style="color: red;">Hello!!</div>',
+            msg2: 'active',
+            attr: 'class',
+            event: 'click'
+        }        
     },
     methods: {
-        increase() {
-            this.count += 1;
+        add() {
+            this.msg += "!"
         }
     }
 }
 </script>
 
-<style lang="scss">
-    h1 {
-        font-size: 50px;
-        color:royalblue;
-    }
-    ul {
-        li {
-            font-size: 40px;
-        }
+<style scoped>
+    .active {
+        color: royalblue;
+        font-size: 100px;
     }
 </style>
