@@ -1,53 +1,38 @@
 <template>
-    <h1 @click="increase">
-        {{ count }}
-    </h1>
-    <div v-if="count > 4">
-        4보다 큼니다!
-    </div>
-    <ul>
-        <Fruit 
-            v-for="fruit in fruits"
-            :key="fruit"
-            :name="fruit">
-            {{ fruit }}
-        </Fruit>
-        <li 
-            v-for="fruit in fruits"
-            :key="fruit">
-            App.vue {{ fruit }}
-        </li>
-    </ul>
+   <button @click="add">ADD</button>
+   <h1>{{ reversedMessage }}</h1>
 </template>
 
 <script>
-import Fruit from '~/components/Fruit'
 export default {
-    components: {
-        Fruit
-    },
     data() {
         return {
-            count: 0,
-            fruits: ['Apple','Banan','Cherry']
+            // Getter.Setter
+            msg: 'Hello Computed!'
         }   
     },
+    computed: {
+        //Getter
+        //reversedMessage() {
+        //    return this.msg.split('').reverse().join('')
+        //}
+        //Getter, Setter
+        reversedMessage: {
+            get() {
+                return this.msg.split('').reverse().join('')
+            },
+            set(newValue) {
+                console.log(newValue)
+                //this.msg = newValue
+            }
+        }
+    },
     methods: {
-        increase() {
-            this.count += 1;
+        add() {
+            this.reversedMessage += '!?'
+            //this.msg += '!?'
         }
     }
 }
 </script>
 
-<style lang="scss">
-    h1 {
-        font-size: 50px;
-        color:royalblue;
-    }
-    ul {
-        li {
-            font-size: 40px;
-        }
-    }
-</style>
